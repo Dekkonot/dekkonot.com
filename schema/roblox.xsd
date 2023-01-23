@@ -2,14 +2,24 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:group name="DataTypes">
         <xs:choice>
-            <xs:element name="bool" type="bool" />
+            <xs:element name="Axes" type="Axes" />
             <xs:element name="BinaryString" type="BinaryString" />
+            <xs:element name="BrickColor" type="BrickColor" />
+            <xs:element name="bool" type="bool" />
+            <xs:element name="ColorSequence" type="ColorSequence" />
+            <xs:element name="Color3" type="Color3" />
             <xs:element name="Color3uint8" type="Color3uint8" />
+            <xs:element name="Content" type="Content" />
             <xs:element name="CoordinateFrame" type="CoordinateFrame" />
             <xs:element name="float" type="float" />
+            <xs:element name="Font" type="Font" />
+            <xs:element name="NumberRange" type="NumberRange" />
+            <xs:element name="NumberSequence" type="NumberSequence" />
             <xs:element name="int" type="int" />
             <xs:element name="int64" type="int64" />
             <xs:element name="Ref" type="Ref" />
+            <xs:element name="PhysicalProperties" type="PhysicalProperties" />
+            <xs:element name="ProtectedString" type="ProtectedString" xml:space="preserve" />
             <xs:element name="SharedString" type="SharedString" />
             <xs:element name="string" type="string" />
             <xs:element name="token" type="token" />
@@ -19,15 +29,20 @@
         </xs:choice>
     </xs:group>
 
-    <xs:complexType name="bool">
+    <xs:complexType name="Axes">
         <xs:annotation>
-            <xs:documentation> Represents a `true` or `false` value. </xs:documentation>
+            <xs:documentation> Represents an Axes value. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:boolean">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
+        <xs:all minOccurs="1" maxOccurs="1">
+            <xs:element name="axes">
+                <xs:simpleType>
+                    <xs:restriction base="xs:unsignedByte">
+                        <xs:maxInclusive value="7" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
     <xs:complexType name="BinaryString">
@@ -42,6 +57,52 @@
         </xs:simpleContent>
     </xs:complexType>
 
+    <xs:complexType name="bool">
+        <xs:annotation>
+            <xs:documentation> Represents a `true` or `false` value. </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:boolean">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrickColor">
+        <xs:annotation>
+            <xs:documentation>Represents a BrickColor value. The data of this tag is the
+                BrickColor's `Value`.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:unsignedInt">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="Color3">
+        <xs:annotation>
+            <xs:documentation>Represents a Color3 value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="R" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `R` component of the Color3 value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="G" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `G` component of the Color3 value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="B" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `B` component of the Color3 value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="Color3uint8">
         <xs:annotation>
             <xs:documentation> Represents a non-HDR Color3 value where each component is packed into
@@ -53,6 +114,48 @@
                 <xs:attributeGroup ref="DataTypeAttributes" />
             </xs:extension>
         </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="ColorSequence">
+        <xs:annotation>
+            <xs:documentation> Represents a ColorSequence value. The contents of this element are
+                each Keypoint of the value in sequence with the attributes in the order `Time`,
+                `Value.R`, `Value.G`, `Value.B`, and an unused `Envelope`. </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="ColorSequenceMeta">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="Content">
+        <xs:annotation>
+            <xs:documentation>Represents an external linked asset as a URI.</xs:documentation>
+        </xs:annotation>
+        <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element name="url">
+                <xs:annotation>
+                    <xs:documentation>The URI of the linked asset</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern
+                            value="(rbxassetid|rbxasset|rbxthumb|rbxhttp|http|https)://[a-zA-Z0-9?=/%.&amp;]+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="null">
+                <xs:annotation>
+                    <xs:documentation>An empty value</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="0" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:choice>
     </xs:complexType>
 
     <xs:complexType name="CoordinateFrame">
@@ -127,6 +230,22 @@
         <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
+    <xs:complexType name="Faces">
+        <xs:annotation>
+            <xs:documentation> Represents a Faces value. </xs:documentation>
+        </xs:annotation>
+        <xs:all minOccurs="1" maxOccurs="1">
+            <xs:element name="faces">
+                <xs:simpleType>
+                    <xs:restriction base="xs:unsignedByte">
+                        <xs:maxInclusive value="63" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+        <xs:attributeGroup ref="DataTypeAttributes" />
+    </xs:complexType>
+
     <xs:complexType name="float">
         <xs:annotation>
             <xs:documentation>Represents a 32-bit IEEE-754 floating point number. </xs:documentation>
@@ -136,6 +255,55 @@
                 <xs:attributeGroup ref="DataTypeAttributes" />
             </xs:extension>
         </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="Font">
+        <xs:annotation>
+            <xs:documentation>Represents a `Font` value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CachedFaceId" type="Content" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The location of a locally stored cache font file</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Family" type="Content">
+                <xs:annotation>
+                    <xs:documentation>The location of the Font's family information</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Style">
+                <xs:annotation>
+                    <xs:documentation> The 'Style' of the Font.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Normal" />
+                        <xs:enumeration value="Italic" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Weight">
+                <xs:annotation>
+                    <xs:documentation>The weight the font has. This must correspond to a value from
+                        the `FontWeight` enum on Roblox.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:unsignedInt">
+                        <xs:enumeration value="100" />
+                        <xs:enumeration value="200" />
+                        <xs:enumeration value="300" />
+                        <xs:enumeration value="400" />
+                        <xs:enumeration value="500" />
+                        <xs:enumeration value="600" />
+                        <xs:enumeration value="700" />
+                        <xs:enumeration value="800" />
+                        <xs:enumeration value="900" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
     <xs:complexType name="int">
@@ -160,10 +328,89 @@
         </xs:simpleContent>
     </xs:complexType>
 
+    <xs:complexType name="NumberRange">
+        <xs:annotation>
+            <xs:documentation>Represents a `NumberRange` value. The value of this element is two
+                floats seperated by a space that represent the `Min` and `Max` of the value.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="NumberRangeMeta">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="NumberSequence">
+        <xs:annotation>
+            <xs:documentation> Represents a NumberSequence value. The contents of this element are
+                each Keypoint of the value in sequence with the attributes in the order `Time`,
+                `Value`, and `Envelope. </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="NumberSequenceMeta">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:complexType name="Ref">
         <xs:annotation>
             <xs:documentation> Represents a link to an Instance. This should be equivalent to the
-                `Ref` attribute of an `Item` somewhere in the file. </xs:documentation>
+                `referent` attribute of an `Item` somewhere in the file. </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attributeGroup ref="DataTypeAttributes" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="PhysicalProperties">
+        <xs:annotation>
+            <xs:documentation>Represents a PhysicalProperties value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element name="CustomPhysics" minOccurs="1" maxOccurs="1" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Whether or not the PhysicalProperties is custom or not.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <!-- TODO Instance where XSD 1.1 might be useful-->
+            <xs:sequence minOccurs="0" maxOccurs="1">
+                <xs:element name="Density" type="xs:float" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The `Density` component of the value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Friction" type="xs:float" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The `Friction` component of the value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Elasticity" type="xs:float" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The `Elasticity` component of the value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="FrictionWeight" type="xs:float" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The `FrictionWeight` component of the value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="ElasticityWeight" type="xs:float" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The `ElasticityWeight` component of the value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="DataTypeAttributes" />
+    </xs:complexType>
+
+    <xs:complexType name="ProtectedString">
+        <xs:annotation>
+            <xs:documentation> Represents a string value that needs additional security in-engine.
+                This element should only used for the `Source` property of Scripts. </xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -179,7 +426,7 @@
                 properties. </xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
-            <xs:extension base="xs:string">
+            <xs:extension base="xs:token">
                 <xs:attributeGroup ref="DataTypeAttributes" />
             </xs:extension>
         </xs:simpleContent>
@@ -188,7 +435,7 @@
     <xs:complexType name="string">
         <xs:annotation>
             <xs:documentation>Represents a string. Strings containing binary data or characters that
-                are forbidden in XML should be wrapped in `</xs:documentation>
+                are forbidden in XML should be wrapped in CDATA</xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -245,13 +492,39 @@
         <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
+    <!-- Helper groups and data types :-) -->
+
     <xs:attributeGroup name="DataTypeAttributes">
-        <xs:attribute name="name" type="xs:string">
+        <xs:attribute name="name" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The name of the property this element represents.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
+
+    <!-- Used for ColorSequence-->
+    <xs:simpleType name="ColorSequenceMeta">
+        <xs:list itemType="xs:float" />
+        <!-- TODO Determine if validating this is worth swapping to XSD 1.1 for xs:assert -->
+    </xs:simpleType>
+
+    <!-- This is used for NumberRange -->
+    <xs:simpleType name="NumberRangeMeta">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:list itemType="xs:float" />
+            </xs:simpleType>
+            <xs:length value="2" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Used for NumberSequence-->
+    <xs:simpleType name="NumberSequenceMeta">
+        <xs:list itemType="xs:float" />
+        <!-- TODO Coupled with ColorSequenceMeta, same question-->
+    </xs:simpleType>
+
+    <!-- The structure of the file -->
 
     <xs:element name="roblox">
         <xs:annotation>
@@ -259,61 +532,31 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:sequence>
-                    <xs:element name="Meta" minOccurs="0" maxOccurs="unbounded">
-                        <xs:annotation>
-                            <xs:documentation> Represents a key-value pair of metadata for the file.
-                                Currently, only `ExplicitAutoJoints` is used and it should be
-                                `true`. </xs:documentation>
-                        </xs:annotation>
-                        <xs:complexType>
-                            <xs:simpleContent>
-                                <xs:extension base="xs:string">
-                                    <xs:attribute name="name" type="xs:string" />
-                                </xs:extension>
-                            </xs:simpleContent>
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="External" minOccurs="0" maxOccurs="unbounded">
-                        <xs:annotation>
-                            <xs:documentation> Purpose unknown. Valid values are `nil` and `null`. </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="Item" minOccurs="0" maxOccurs="unbounded" type="Item" />
-                    <xs:element name="SharedStrings" minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                            <xs:documentation> A repository for storing SharedString values as
-                                key-value pairs that are referenced in the file above. </xs:documentation>
-                        </xs:annotation>
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element name="SharedString">
+                <xs:element name="Meta" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation> Represents a key-value pair of metadata for the file.
+                            Currently, only `ExplicitAutoJoints` is used and it should be `true`. </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="name" type="xs:string" use="required">
                                     <xs:annotation>
-                                        <xs:documentation>An individual SharedString. The contents
-                                            of this element represent the value of the SharedString
-                                            and the `md5` attribute represents the key used by
-                                            properties..</xs:documentation>
+                                        <xs:documentation>tThe key portion of the metadata's
+                                            key-value pair.</xs:documentation>
                                     </xs:annotation>
-                                    <xs:complexType>
-                                        <xs:simpleContent>
-                                            <xs:extension base="xs:string">
-                                                <xs:attribute name="md5" type="xs:string">
-                                                    <xs:annotation>
-                                                        <xs:documentation>The key that's used by
-                                                            SharedString properties to refer to this
-                                                            SharedString. Despite the name, this
-                                                            value may be anything and the hash is
-                                                            not checked by Roblox.</xs:documentation>
-                                                    </xs:annotation>
-                                                </xs:attribute>
-                                            </xs:extension>
-                                        </xs:simpleContent>
-                                    </xs:complexType>
-                                </xs:element>
-                            </xs:sequence>
-                        </xs:complexType>
-                    </xs:element>
-                </xs:sequence>
+                                </xs:attribute>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="External" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation> Purpose unknown. Valid values are `nil` and `null`. </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="Item" minOccurs="1" maxOccurs="unbounded" />
+                <xs:element ref="SharedStrings" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
             <xs:attribute name="version" use="required">
                 <xs:annotation>
@@ -321,44 +564,80 @@
                         should be `4`. </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
-                    <xs:restriction base="xs:integer">
-                        <xs:pattern value="4" />
+                    <xs:restriction base="xs:unsignedInt">
+                        <xs:pattern value="4"></xs:pattern>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="Item">
+    <xs:element name="Item">
         <xs:annotation>
             <xs:documentation> A single Roblox Instance, alongside all of its properties and
                 descendants. </xs:documentation>
         </xs:annotation>
-        <xs:sequence>
-            <xs:element name="Properties" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Properties" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="Item" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="referent" type="xs:string" use="required">
                 <xs:annotation>
-                    <xs:documentation> A list of all properties on an Instance. Any property not
-                        listed here will be set to a default value, which varies from property to
-                        property. Also, not every property will deserialize. </xs:documentation>
+                    <xs:documentation> A UID used by Roblox to represent this Instance when setting
+                        properties with the `Instance` type. </xs:documentation>
                 </xs:annotation>
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:group ref="DataTypes" minOccurs="0" maxOccurs="unbounded" />
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Item" minOccurs="0" maxOccurs="unbounded" />
-        </xs:sequence>
-        <xs:attribute name="class" type="xs:string">
-            <xs:annotation>
-                <xs:documentation> The class of the Instance represented by this `Item`. </xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="referent" type="xs:string">
-            <xs:annotation>
-                <xs:documentation> A UID used by Roblox to represent this Instance when setting
-                    properties with the `Instance` type. </xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
-    </xs:complexType>
+            </xs:attribute>
+            <xs:attribute name="class" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation> The class of the Instance represented by this `Item`. </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Properties">
+        <xs:annotation>
+            <xs:documentation> A list of all properties on an Instance. Any property not listed here
+                will be set to a default value, which varies from property to property. Also, not
+                every property will deserialize. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="DataTypes" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SharedStrings">
+        <xs:annotation>
+            <xs:documentation> A repository for storing SharedString values as key-value pairs that
+                are referenced in the file above. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SharedString" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>An individual SharedString. The contents of this element
+                            represent the value of the SharedString and the `md5` attribute
+                            represents the key used by properties.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:token">
+                                <xs:attribute name="md5" type="xs:string" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>The key that's used by SharedString
+                                            properties to refer to this SharedString. Despite the
+                                            name, this value may be anything and the hash is not
+                                            checked by Roblox.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
