@@ -2,30 +2,336 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:group name="DataTypes">
         <xs:choice>
-            <xs:element name="Axes" type="Axes" />
-            <xs:element name="BinaryString" type="BinaryString" />
-            <xs:element name="BrickColor" type="BrickColor" />
-            <xs:element name="bool" type="bool" />
-            <xs:element name="ColorSequence" type="ColorSequence" />
-            <xs:element name="Color3" type="Color3" />
-            <xs:element name="Color3uint8" type="Color3uint8" />
-            <xs:element name="Content" type="Content" />
-            <xs:element name="CoordinateFrame" type="CoordinateFrame" />
-            <xs:element name="float" type="float" />
-            <xs:element name="Font" type="Font" />
-            <xs:element name="NumberRange" type="NumberRange" />
-            <xs:element name="NumberSequence" type="NumberSequence" />
-            <xs:element name="int" type="int" />
-            <xs:element name="int64" type="int64" />
-            <xs:element name="Ref" type="Ref" />
-            <xs:element name="PhysicalProperties" type="PhysicalProperties" />
-            <xs:element name="ProtectedString" type="ProtectedString" xml:space="preserve" />
-            <xs:element name="SharedString" type="SharedString" />
-            <xs:element name="string" type="string" />
-            <xs:element name="token" type="token" />
-            <xs:element name="Vector3" type="Vector3" />
+            <xs:element name="Axes">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Axes">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
 
-            <xs:element name="OptionalCoordinateFrame" type="OptionalCoordinateFrame" />
+            <xs:element name="BinaryString">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="BinaryString">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="BrickColor">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="BrickColor">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="bool">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="bool">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ColorSequence">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="ColorSequence">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Color3">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Color3">
+                            <xs:attributeGroup ref="DataTypeAttributes"></xs:attributeGroup>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Color3uint8">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="Color3uint8">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Content">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Content">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="CoordinateFrame">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="CoordinateFrame">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="double">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="double">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Faces">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Faces">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="float">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="float">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Font">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Font">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="NumberRange">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="NumberRange">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="NumberSequence">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="NumberSequence">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="int">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="int">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="int64">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="int64">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Ref">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="Ref">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="PhysicalProperties">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="PhysicalProperties">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ProtectedString" xml:space="preserve">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="ProtectedString">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Ray">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Ray">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Rect2D">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Rect2D">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="SharedString">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="SharedString">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="string">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="string">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="token">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="token">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="UDim">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="UDim">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="UDim2">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="UDim2">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="UniqueId">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="UniqueId">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Vector3">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Vector3">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Vector3int16">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Vector3int16">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Vector2">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Vector2">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Vector2int16">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Vector2int16">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="OptionalCoordinateFrame">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="OptionalCoordinateFrame">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
         </xs:choice>
     </xs:group>
 
@@ -42,43 +348,30 @@
                 </xs:simpleType>
             </xs:element>
         </xs:all>
-        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
-    <xs:complexType name="BinaryString">
+    <xs:simpleType name="BinaryString">
         <xs:annotation>
             <xs:documentation> Represents a property that's serialized to and from binary data.
                 Examples include tags and attributes. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:base64Binary">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:base64Binary" />
+    </xs:simpleType>
 
-    <xs:complexType name="bool">
+    <xs:simpleType name="bool">
         <xs:annotation>
             <xs:documentation> Represents a `true` or `false` value. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:boolean">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
 
-    <xs:complexType name="BrickColor">
+    <xs:simpleType name="BrickColor">
         <xs:annotation>
             <xs:documentation>Represents a BrickColor value. The data of this tag is the
                 BrickColor's `Value`.</xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:unsignedInt">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:unsignedInt" />
+    </xs:simpleType>
 
     <xs:complexType name="Color3">
         <xs:annotation>
@@ -103,31 +396,24 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Color3uint8">
+    <xs:simpleType name="Color3uint8">
         <xs:annotation>
             <xs:documentation> Represents a non-HDR Color3 value where each component is packed into
                 an integer. The upper 8-bits are not used, and the lower 24 are occupied by the `R`,
                 `G`, and `B` components of the Color3 as integers between 0 and 255.</xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:unsignedInt">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:unsignedInt" />
+    </xs:simpleType>
 
-    <xs:complexType name="ColorSequence">
+    <xs:simpleType name="ColorSequence">
         <xs:annotation>
             <xs:documentation> Represents a ColorSequence value. The contents of this element are
                 each Keypoint of the value in sequence with the attributes in the order `Time`,
                 `Value.R`, `Value.G`, `Value.B`, and an unused `Envelope`. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="ColorSequenceMeta">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <!-- TODO Figure out if it's viable to restrict this to be a multiple of 5 elements-->
+        <xs:list itemType="xs:float" />
+    </xs:simpleType>
 
     <xs:complexType name="Content">
         <xs:annotation>
@@ -139,9 +425,9 @@
                     <xs:documentation>The URI of the linked asset</xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
-                    <xs:restriction base="xs:string">
+                    <xs:restriction base="xs:anyURI">
                         <xs:pattern
-                            value="(rbxassetid|rbxasset|rbxthumb|rbxhttp|http|https)://[a-zA-Z0-9?=/%.&amp;]+" />
+                            value="(rbxassetid|rbxasset|rbxthumb|rbxhttp|http|https)://.+" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -160,7 +446,7 @@
 
     <xs:complexType name="CoordinateFrame">
         <xs:annotation>
-            <xs:documentation> Represents a Roblox CFrame value. </xs:documentation>
+            <xs:documentation> Represents a CFrame value. </xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="X" minOccurs="1" maxOccurs="1" type="xs:float">
@@ -227,8 +513,14 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
+
+    <xs:simpleType name="double">
+        <xs:annotation>
+            <xs:documentation> Represented a 64-bit IEEE-754 floating point number. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:double" />
+    </xs:simpleType>
 
     <xs:complexType name="Faces">
         <xs:annotation>
@@ -243,25 +535,20 @@
                 </xs:simpleType>
             </xs:element>
         </xs:all>
-        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
-    <xs:complexType name="float">
+    <xs:simpleType name="float">
         <xs:annotation>
-            <xs:documentation>Represents a 32-bit IEEE-754 floating point number. </xs:documentation>
+            <xs:documentation> Represents a 32-bit IEEE-754 floating point number. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:float">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:float" />
+    </xs:simpleType>
 
     <xs:complexType name="Font">
         <xs:annotation>
-            <xs:documentation>Represents a `Font` value.</xs:documentation>
+            <xs:documentation>Represents a Font value.</xs:documentation>
         </xs:annotation>
-        <xs:sequence>
+        <xs:all>
             <xs:element name="CachedFaceId" type="Content" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>The location of a locally stored cache font file</xs:documentation>
@@ -302,68 +589,57 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-        </xs:sequence>
-        <xs:attributeGroup ref="DataTypeAttributes" />
+        </xs:all>
     </xs:complexType>
 
-    <xs:complexType name="int">
+    <xs:simpleType name="int">
         <xs:annotation>
-            <xs:documentation>Represents a 32-bit signed integer.</xs:documentation>
+            <xs:documentation> Represents a 32-bit signed integer. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:int">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:int" />
+    </xs:simpleType>
 
-    <xs:complexType name="int64">
+    <xs:simpleType name="int64">
         <xs:annotation>
-            <xs:documentation>Represents a 64-bit signed integer.</xs:documentation>
+            <xs:documentation> Represents a 64-bit signed integer. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:long">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:long" />
+    </xs:simpleType>
 
-    <xs:complexType name="NumberRange">
+    <xs:simpleType name="NumberRange">
         <xs:annotation>
-            <xs:documentation>Represents a `NumberRange` value. The value of this element is two
+            <xs:documentation>Represents a NumberRange value. The value of this element is two
                 floats seperated by a space that represent the `Min` and `Max` of the value.</xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="NumberRangeMeta">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:list itemType="xs:float" />
+            </xs:simpleType>
+            <xs:length value="2" />
+        </xs:restriction>
+    </xs:simpleType>
 
-    <xs:complexType name="NumberSequence">
+    <xs:simpleType name="NumberSequence">
         <xs:annotation>
             <xs:documentation> Represents a NumberSequence value. The contents of this element are
                 each Keypoint of the value in sequence with the attributes in the order `Time`,
                 `Value`, and `Envelope. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="NumberSequenceMeta">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction>
+            <xs:simpleType>
+                <!-- TODO figure out if it's viable to make this the right number of elements-->
+                <xs:list itemType="xs:float" />
+            </xs:simpleType>
+        </xs:restriction>
+    </xs:simpleType>
 
-    <xs:complexType name="Ref">
+    <xs:simpleType name="Ref">
         <xs:annotation>
             <xs:documentation> Represents a link to an Instance. This should be equivalent to the
                 `referent` attribute of an `Item` somewhere in the file. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
 
     <xs:complexType name="PhysicalProperties">
         <xs:annotation>
@@ -375,7 +651,7 @@
                     <xs:documentation>Whether or not the PhysicalProperties is custom or not.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <!-- TODO Instance where XSD 1.1 might be useful-->
+            <!-- Instance where XSD 1.1 might be useful-->
             <xs:sequence minOccurs="0" maxOccurs="1">
                 <xs:element name="Density" type="xs:float" minOccurs="1" maxOccurs="1">
                     <xs:annotation>
@@ -404,60 +680,170 @@
                 </xs:element>
             </xs:sequence>
         </xs:sequence>
-        <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
-    <xs:complexType name="ProtectedString">
+    <xs:simpleType name="ProtectedString">
         <xs:annotation>
             <xs:documentation> Represents a string value that needs additional security in-engine.
                 This element should only used for the `Source` property of Scripts. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+
+    <xs:complexType name="Ray">
+        <xs:annotation>
+            <xs:documentation>Represents a Ray value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="origin" type="Vector3">
+                <xs:annotation>
+                    <xs:documentation>The `origin` of the Ray value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="direction" type="Vector3">
+                <xs:annotation>
+                    <xs:documentation>The `direction` of the Ray value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="SharedString">
+    <xs:complexType name="Rect2D">
+        <xs:annotation>
+            <xs:documentation> Represents a Rect2D value. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="min" type="Vector2">
+                <xs:annotation>
+                    <xs:documentation>The `min` of the Rect2D value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="max" type="Vector2">
+                <xs:annotation>
+                    <xs:documentation>The `min` of the Rect2D value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="SharedString">
         <xs:annotation>
             <xs:documentation> Represents a SharedString from a repository at the end of the file.
                 Used to reduce the file size and offset the memory footprint for large string
                 properties. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:token">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
 
-    <xs:complexType name="string">
+    <xs:simpleType name="string">
         <xs:annotation>
             <xs:documentation>Represents a string. Strings containing binary data or characters that
                 are forbidden in XML should be wrapped in CDATA</xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
 
-    <xs:complexType name="token">
+    <xs:simpleType name="token">
         <xs:annotation>
             <xs:documentation> Represents a Roblox enumeration. </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:unsignedInt">
-                <xs:attributeGroup ref="DataTypeAttributes" />
-            </xs:extension>
-        </xs:simpleContent>
+        <xs:restriction base="xs:unsignedInt" />
+    </xs:simpleType>
+
+    <xs:complexType name="UDim">
+        <xs:annotation>
+            <xs:documentation>Represents a UDim value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="S" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `Scale` component of the UDim.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="O" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>The `Offset` component of the UDim.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UDim2">
+        <xs:annotation>
+            <xs:documentation>Represents a UDim2 value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="XS" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `Scale` component of the UDim2's `X` component.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="XO" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>The `Offset` component of the UDim2's `X` component.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="YS" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `Scale` component of the UDim2's `Y` component.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="YO" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation>The `Offset` component of the UDim2's `Y` component.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="UniqueId">
+        <xs:annotation>
+            <xs:documentation>Represents a UniqueId value.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:hexBinary">
+            <xs:length value="16" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Vector2">
+        <xs:annotation>
+            <xs:documentation>Represents a Vector2 value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="X" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `X` component of the Vector2.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Y" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The `Y` component of the Vector2.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Vector2int16">
+        <xs:annotation>
+            <xs:documentation>Represents a Vector2int16 value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="X" type="xs:short">
+                <xs:annotation>
+                    <xs:documentation>The `X` component of the Vector2int16.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Y" type="xs:short">
+                <xs:annotation>
+                    <xs:documentation>The `Y` component of the Vector2int16.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="Vector3">
         <xs:annotation>
-            <xs:documentation> Represents a Vector3. </xs:documentation>
+            <xs:documentation> Represents a Vector3 value. </xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="X" type="xs:float">
@@ -476,7 +862,29 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        <xs:attributeGroup ref="DataTypeAttributes" />
+    </xs:complexType>
+
+    <xs:complexType name="Vector3int16">
+        <xs:annotation>
+            <xs:documentation>Represents a Vector3int16 value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="X" type="xs:short">
+                <xs:annotation>
+                    <xs:documentation>The `X` component of the Vector3int16.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Y" type="xs:short">
+                <xs:annotation>
+                    <xs:documentation>The `Y` component of the Vector3int16.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Z" type="xs:short">
+                <xs:annotation>
+                    <xs:documentation>The `Z` component of the Vector3int16.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 
     <!--
@@ -486,13 +894,13 @@
         <xs:annotation>
             <xs:documentation> A CFrame value that is Optional and may or may not be present. </xs:documentation>
         </xs:annotation>
-        <xs:choice>
-            <xs:element name="CFrame" type="CoordinateFrame" minOccurs="0" maxOccurs="1" />
-        </xs:choice>
+        <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:element name="CFrame" type="CoordinateFrame" />
+        </xs:sequence>
         <xs:attributeGroup ref="DataTypeAttributes" />
     </xs:complexType>
 
-    <!-- Helper groups and data types :-) -->
+    <!-- Helper group -->
 
     <xs:attributeGroup name="DataTypeAttributes">
         <xs:attribute name="name" type="xs:string" use="required">
@@ -501,28 +909,6 @@
             </xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
-
-    <!-- Used for ColorSequence-->
-    <xs:simpleType name="ColorSequenceMeta">
-        <xs:list itemType="xs:float" />
-        <!-- TODO Determine if validating this is worth swapping to XSD 1.1 for xs:assert -->
-    </xs:simpleType>
-
-    <!-- This is used for NumberRange -->
-    <xs:simpleType name="NumberRangeMeta">
-        <xs:restriction>
-            <xs:simpleType>
-                <xs:list itemType="xs:float" />
-            </xs:simpleType>
-            <xs:length value="2" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!-- Used for NumberSequence-->
-    <xs:simpleType name="NumberSequenceMeta">
-        <xs:list itemType="xs:float" />
-        <!-- TODO Coupled with ColorSequenceMeta, same question-->
-    </xs:simpleType>
 
     <!-- The structure of the file -->
 
@@ -549,6 +935,10 @@
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
+                    <xs:unique name="UniqueMetadata">
+                        <xs:selector xpath="." />
+                        <xs:field xpath="@name" />
+                    </xs:unique>
                 </xs:element>
                 <xs:element name="External" minOccurs="0" maxOccurs="unbounded" type="xs:string">
                     <xs:annotation>
@@ -570,6 +960,18 @@
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>
+        <xs:unique name="UniqueReferent">
+            <xs:selector xpath=".//Item" />
+            <xs:field xpath="@referent" />
+        </xs:unique>
+        <xs:key name="SharedStringDefinition">
+            <xs:selector xpath="./SharedStrings/SharedString" />
+            <xs:field xpath="@md5" />
+        </xs:key>
+        <xs:keyref name="SharedStringUse" refer="SharedStringDefinition">
+            <xs:selector xpath=".//Properties/SharedString" />
+            <xs:field xpath="." />
+        </xs:keyref>
     </xs:element>
 
     <xs:element name="Item">
@@ -583,6 +985,8 @@
                 <xs:element ref="Item" minOccurs="0" maxOccurs="unbounded" />
             </xs:sequence>
             <xs:attribute name="referent" type="xs:string" use="required">
+                <!-- We should not allow a referent to be "null" but that's not within our power at
+                this time unless we switch to XSD 1.1 -->
                 <xs:annotation>
                     <xs:documentation> A UID used by Roblox to represent this Instance when setting
                         properties with the `Instance` type. </xs:documentation>
@@ -607,6 +1011,10 @@
                 <xs:group ref="DataTypes" minOccurs="0" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
+        <xs:unique name="UniquePropertyName">
+            <xs:selector xpath="./*" />
+            <xs:field xpath="@name" />
+        </xs:unique>
     </xs:element>
 
     <xs:element name="SharedStrings">
@@ -639,5 +1047,9 @@
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
+        <xs:unique name="UniqueSharedString">
+            <xs:selector xpath="./SharedString" />
+            <xs:field xpath="@md5" />
+        </xs:unique>
     </xs:element>
 </xs:schema>
