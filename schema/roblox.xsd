@@ -222,6 +222,16 @@
                 </xs:complexType>
             </xs:element>
 
+            <xs:element name="SecurityCapabilities">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="SecurityCapabilities">
+                            <xs:attributeGroup ref="DataTypeAttributes" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="SharedString">
                 <xs:complexType>
                     <xs:simpleContent>
@@ -725,6 +735,13 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:simpleType name="SecurityCapabilities">
+        <xs:annotation>
+            <xs:documentation> Represents the capabilities of an Instance. Mostly internal. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int" />
+    </xs:simpleType>
 
     <xs:simpleType name="SharedString">
         <xs:annotation>
