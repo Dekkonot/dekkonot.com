@@ -1,10 +1,12 @@
 body {
-    background-color:lavender;
-    font-family:Arial, Helvetica, sans-serif;
-    text-align:center;
+    background-color: lavender;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
     margin-bottom: 50px;
 }
+
 footer {
+    background-color: lavender;
     position: fixed;
     bottom: 0px;
     left: 0px;
@@ -13,12 +15,23 @@ footer {
     text-align: center;
     margin-left: 10px;
 }
+
+code {
+    color: mediumpurple;
+}
+
+a {
+    color: blue
+}
+
 .main-text {
-    color: #D498F4;
+    color: darkviolet;
 }
+
 .sub-text {
-    color: #592A73;
+    color: indigo;
 }
+
 #main-box {
     align-items: center;
     margin: 0 25% 0 25%;
