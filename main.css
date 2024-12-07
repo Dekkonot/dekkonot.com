@@ -25,11 +25,17 @@ a {
 }
 
 .main-text {
+    font-size: 36pt;
     color: darkviolet;
 }
 
 .sub-text {
+    font-size: 18pt;
     color: indigo;
+}
+
+.footer-text {
+    font-size: 14pt;
 }
 
 #main-box {
